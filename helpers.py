@@ -62,18 +62,18 @@ def histogram_equalisation(image):
     
     if img.ndim == 2:
         # Grayscale image - direct histogram equalisation
-        equalized = cv2.equalizeHist(img)
-        return equalized.astype(np.float64)
+        equalised = cv2.equalizeHist(img)
+        return equalised.astype(np.float64)
     else:
-        # Color image - convert to LAB, equalize L channel, convert back
+        # Color image - convert to LAB, equalise L channel, convert back
         # Convert RGB to BGR for OpenCV
         img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         # Convert to LAB color space
         lab = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2LAB)
-        # Equalize the L (luminance) channel
+        # Equalize the L (lightness) channel
         lab[:, :, 0] = cv2.equalizeHist(lab[:, :, 0])
         # Convert back to BGR
-        bgr_equalized = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+        bgr_equalised = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
         # Convert back to RGB
-        rgb_equalized = cv2.cvtColor(bgr_equalized, cv2.COLOR_BGR2RGB)
-        return rgb_equalized.astype(np.float64)
+        rgb_equalised = cv2.cvtColor(bgr_equalised, cv2.COLOR_BGR2RGB)
+        return rgb_equalised.astype(np.float64)
